@@ -47,9 +47,23 @@
     }
     .brand-container { display: flex; align-items: center; gap: 15px; }
     .school-logo {
-      width: 75px; height: 75px; background: var(--maroon); color: var(--gold);
-      border-radius: 50%; display: flex; justify-content: center; align-items: center;
-      font-size: 2.2rem; border: 3px solid var(--gold); flex-shrink: 0;
+      width: 75px; 
+      height: 75px; 
+      background: var(--maroon); 
+      color: var(--gold);
+      border-radius: 50%; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      font-size: 2.2rem; 
+      border: 3px solid var(--gold); 
+      flex-shrink: 0;
+      overflow: hidden; /* Clips any oversized image overflow */
+    }
+    .school-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures the image fills the 75px circle cleanly */
     }
     .school-names h1 { font-size: 1.4rem; color: var(--maroon); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
     .school-names h2 { font-size: 0.9rem; color: var(--navy-blue); font-weight: 700; }
