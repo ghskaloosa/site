@@ -585,18 +585,20 @@
 <div class="chat-widget">
   <div class="chat-btn" onclick="toggleChat()"><i class="fa-solid fa-headset"></i></div>
   <div class="chat-box" id="chat-box">
-    <div class="chat-header">
-      <span><i class="fa-solid fa-robot"></i> AI Helpdesk (GHS Kaloosa)</span>
-      <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="toggleChat()"></i>
+    <div class="chat-header" style="background: var(--navy-blue); color: white; padding: 12px 15px; text-align: center; position: relative;">
+      <div style="font-weight: bold; font-size: 0.95rem; width: 100%; text-align: center;">
+        <i class="fa-solid fa-robot"></i> AI Helpdesk (GHS Kaloosa)
+      </div>
+      <i class="fa-solid fa-xmark" style="cursor: pointer; position: absolute; right: 12px; top: 12px; font-size: 1rem;" onclick="toggleChat()"></i>
     </div>
-    <div class="chat-body" id="chat-messages">
+    <div class="chat-body" id="chat-messages" style="height: 220px; overflow-y: auto; padding: 12px; font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px; background: #fafafa;">
       <div class="chat-msg bot">Hello! Welcome to PM SHRI GGHS Kaloosa. How can I assist you today?</div>
     </div>
     <!-- Interactive Input Form -->
-    <form onsubmit="handleChatMessage(event)" style="display: flex; border-top: 1px solid var(--border-color); padding: 5px; background: #fff;">
-      <input type="text" id="chat-input" placeholder="Type a message..." required style="flex: 1; border: none; padding: 8px; font-size: 0.85rem; outline: none;">
-      <button type="submit" style="background: var(--maroon); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">
-        <i class="fa-solid fa-paper-plane"></i>
+    <form onsubmit="handleChatMessage(event)" style="display: flex; border-top: 1px solid var(--border-color); padding: 8px; background: #fff; height: 50px; box-sizing: border-box; align-items: center;">
+      <input type="text" id="chat-input" placeholder="Type a message..." required style="flex: 1; border: 1px solid var(--border-color); border-radius: 4px; padding: 6px 10px; font-size: 0.82rem; outline: none; height: 34px; box-sizing: border-box;">
+      <button type="submit" style="background: var(--maroon); color: white; border: none; padding: 0 12px; height: 34px; border-radius: 4px; cursor: pointer; margin-left: 6px; display: flex; align-items: center; justify-content: center;">
+        <i class="fa-solid fa-paper-plane" style="font-size: 0.85rem;"></i>
       </button>
     </form>
   </div>
@@ -637,6 +639,9 @@
     const chatBox = document.getElementById('chat-box');
     if (chatBox) {
       chatBox.style.display = (chatBox.style.display === 'flex' || chatBox.style.display === 'block') ? 'none' : 'flex';
+      if (chatBox.style.display === 'flex') {
+        chatBox.style.flexDirection = 'column';
+      }
     }
   }
 
@@ -797,7 +802,7 @@
     input.value = '';
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    // Generate automated bot response
+    // Generate response
     setTimeout(() => {
       const botMsgDiv = document.createElement('div');
       botMsgDiv.className = 'chat-msg bot';
