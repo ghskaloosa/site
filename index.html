@@ -629,7 +629,7 @@
     </div>
   </div>
   <div class="bottom-bar">&copy; 2026 PM SHRI Govt. Girls High School Kaloosa, Bandipora | All Rights Reserved<br>
-    Website Developed and Maintained by <a href="https://www.instagram.com/imran.2120/" target="_blank" rel="noopener noreferrer" style="color: var(--gold); font-weight: bold; text-decoration: underline;">Imran Ahmad Khan</a>
+  Website Developed and Maintained by <a href="https://www.instagram.com/imran.2120/" target="_blank" rel="noopener noreferrer" style="color: var(--gold); font-weight: bold; text-decoration: underline;">Imran Ahmad Khan</a>
   </div>
 </footer>
 
@@ -795,7 +795,7 @@
 
     const chatMessages = document.getElementById('chat-messages');
 
-    // Append user message
+    // 1. Append user message
     const userMsgDiv = document.createElement('div');
     userMsgDiv.className = 'chat-msg user';
     userMsgDiv.innerText = userText;
@@ -804,27 +804,42 @@
     input.value = '';
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    // Generate response
+    // 2. Automated Smart Response Engine
     setTimeout(() => {
       const botMsgDiv = document.createElement('div');
       botMsgDiv.className = 'chat-msg bot';
 
       const lower = userText.toLowerCase();
-      if (lower.includes('admission') || lower.includes('apply')) {
-        botMsgDiv.innerText = "Online admissions for 2026-27 are open! You can apply directly using the 'Online Admission' link in the top menu.";
-      } else if (lower.includes('fee') || lower.includes('pay')) {
-        botMsgDiv.innerText = "You can pay school fees, annual development charges, or exam fees online via UPI, Cards, or Net Banking under the 'Fee Payments' section.";
-      } else if (lower.includes('contact') || lower.includes('phone') || lower.includes('email') || lower.includes('address')) {
-        botMsgDiv.innerText = "We are located at Kaloosa, Bandipora - 193502. You can email us at ghskaloosaheadmaster@gmail.com.";
-      } else if (lower.includes('exam') || lower.includes('result') || lower.includes('date sheet')) {
-        botMsgDiv.innerText = "Mid-Term Examination date sheets have been published! Check the 'Exams & Results' tab for updates.";
+
+      if (lower.includes('admission') || lower.includes('apply') || lower.includes('join') || lower.includes('form')) {
+        botMsgDiv.innerText = "Online admissions for Session 2026-27 are open for Class 6th to 10th! Click on 'Online Admission' in the navigation bar to submit your digital application.";
+      } else if (lower.includes('fee') || lower.includes('pay') || lower.includes('cost') || lower.includes('charge')) {
+        botMsgDiv.innerText = "You can pay fees online via UPI, Cards, or NetBanking. Fee options range from ₹150 to ₹900 (Development, Exam, Sports). Go to 'Fee Payments' in the top menu.";
+      } else if (lower.includes('contact') || lower.includes('phone') || lower.includes('email') || lower.includes('address') || lower.includes('where') || lower.includes('location')) {
+        botMsgDiv.innerText = "We are located at Kaloosa, Bandipora - 193502, Kashmir (J&K). Email: ghskaloosaheadmaster@gmail.com | UDISE Code: 01161404207.";
+      } else if (lower.includes('exam') || lower.includes('result') || lower.includes('date sheet') || lower.includes('marks')) {
+        botMsgDiv.innerText = "Mid-Term Examination date sheets and announcements are published in the 'Exams & Results' tab or on your Student Dashboard after logging in.";
+      } else if (lower.includes('headmaster') || lower.includes('principal') || lower.includes('leadership') || lower.includes('head')) {
+        botMsgDiv.innerText = "The school is led by the Headmaster of Govt. GHS Kaloosa. Message: 'Empowering the girl child with modern technology, scientific temperament, and strong ethics.'";
+      } else if (lower.includes('pm shri') || lower.includes('scheme') || lower.includes('facility') || lower.includes('lab') || lower.includes('smart class')) {
+        botMsgDiv.innerText = "Under the PM SHRI central scheme, PM SHRI GHS Kaloosa features ICT Smart Classrooms, Science Innovation Labs, Digital Library, and modern sports facilities.";
+      } else if (lower.includes('class') || lower.includes('grade') || lower.includes('standard')) {
+        botMsgDiv.innerText = "PM SHRI Govt. Girls High School Kaloosa offers secondary education for female students from Class 6th to Class 10th.";
+      } else if (lower.includes('book') || lower.includes('lms') || lower.includes('syllabus') || lower.includes('notes') || lower.includes('material')) {
+        botMsgDiv.innerText = "You can access NCERT digital textbooks, lab manuals, and e-books directly under the 'Academics & LMS' section in the top menu.";
+      } else if (lower.includes('login') || lower.includes('portal') || lower.includes('dashboard')) {
+        botMsgDiv.innerText = "We have dedicated login portals for Students, Staff, and Administrators. Use the portal buttons located on the top right banner.";
+      } else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey') || lower.includes('greetings')) {
+        botMsgDiv.innerText = "Hello! Welcome to PM SHRI GHS Kaloosa Helpdesk. How can I assist you today?";
+      } else if (lower.includes('thank')) {
+        botMsgDiv.innerText = "You're most welcome! Feel free to ask if you have any further questions.";
       } else {
-        botMsgDiv.innerText = "Thank you for reaching out! For detailed queries, please visit our Contact page or email administration directly.";
+        botMsgDiv.innerText = "For specific details, please reach out directly to the school administration at ghskaloosaheadmaster@gmail.com or visit our Contact page.";
       }
 
       chatMessages.appendChild(botMsgDiv);
       chatMessages.scrollTop = chatMessages.scrollHeight;
-    }, 600);
+    }, 500);
   }
 </script>
 </body>
