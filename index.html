@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PM SHRI Govt. Girls High School Kaloosa, Bandipora</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --navy-blue: #0a2540;
+      --maroon: #800000;
+      --gold: #d4af37;
+      --light-bg: #f4f6f9;
+      --dark-text: #222222;
+      --white: #ffffff;
+      --border-color: #cbd5e1;
+      --success-green: #10b981;
+      --accent-blue: #0284c7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--light-bg); color: var(--dark-text); line-height: 1.5; }
+    a { text-decoration: none; color: inherit; cursor: pointer; }
+
+    /* Top Utility Header */
+    .top-header {
+      background-color: var(--navy-blue);
+      color: var(--white);
+      padding: 6px 2rem;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--gold);
+    }
+    .top-links a { color: var(--white); margin-left: 12px; transition: color 0.2s; }
+    .top-links a:hover { color: var(--gold); }
+
+    /* Branding Header */
+    .branding-header {
+      background-color: var(--white);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .brand-container { display: flex; align-items: center; gap: 15px; }
+    .school-logo {
+      width: 75px; height: 75px; background: var(--maroon); color: var(--gold);
+      border-radius: 50%; display: flex; justify-content: center; align-items: center;
+      font-size: 2.2rem; border: 3px solid var(--gold); flex-shrink: 0;
+    }
+    .school-names h1 { font-size: 1.4rem; color: var(--maroon); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+    .school-names h2 { font-size: 0.9rem; color: var(--navy-blue); font-weight: 700; }
+    
+    .header-quick-portal { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-portal { padding: 8px 12px; border-radius: 4px; font-weight: 600; font-size: 0.82rem; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px; transition: opacity 0.2s; }
+    .btn-portal:hover { opacity: 0.9; }
+    .btn-portal-student { background-color: var(--accent-blue); color: white; }
+    .btn-portal-staff { background-color: #0d9488; color: white; }
+    .btn-portal-admin { background-color: var(--maroon); color: white; }
+    .btn-portal-pay { background-color: #15803d; color: white; }
+
+    /* Navigation Bar */
+    .navbar { background-color: var(--maroon); position: sticky; top: 0; z-index: 1000; box-shadow: 0 3px 6px rgba(0,0,0,0.15); }
+    .nav-list { display: flex; list-style: none; max-width: 1250px; margin: 0 auto; flex-wrap: wrap; }
+    .nav-link { display: block; padding: 11px 15px; color: var(--white); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; border-right: 1px solid rgba(255,255,255,0.1); }
+    .nav-link:hover, .nav-link.active-nav { background-color: rgba(0,0,0,0.25); color: var(--gold); }
+
+    /* Announcement Ticker */
+    .ticker-container { background: #e2e8f0; display: flex; align-items: center; border-bottom: 1px solid var(--border-color); }
+    .ticker-title { background: var(--gold); color: var(--navy-blue); padding: 5px 15px; font-weight: bold; font-size: 0.82rem; white-space: nowrap; text-transform: uppercase; }
+    marquee { font-size: 0.85rem; font-weight: 600; color: var(--navy-blue); padding: 4px 0; }
+
+    /* Main Container */
+    .main-wrapper { max-width: 1250px; margin: 1.5rem auto; padding: 0 1rem; min-height: 60vh; }
+    .page-content { display: none; }
+    .page-content.active-page { display: block; animation: fadeIn 0.3s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* HERO & HOMEPAGE */
+    .jnu-hero-banner {
+      background: linear-gradient(rgba(10, 37, 64, 0.88), rgba(128, 0, 0, 0.85)), 
+                  url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      color: white; padding: 3rem 2rem; border-radius: 4px; margin-bottom: 2rem; box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
+    }
+    .jnu-hero-content h2 { font-size: 2.2rem; font-weight: 800; color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .jnu-hero-content p { font-size: 1.05rem; max-width: 850px; opacity: 0.95; margin-bottom: 1.5rem; }
+
+    .jnu-stats-strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem; background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2);
+    }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 1.6rem; font-weight: bold; color: var(--gold); }
+    .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .jnu-grid { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .jnu-box { background: white; border: 1px solid var(--border-color); border-top: 4px solid var(--maroon); border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.04); }
+    .jnu-box-title { background: #f8fafc; color: var(--navy-blue); padding: 10px 14px; font-weight: 700; font-size: 0.95rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; }
+
+    .hm-profile { padding: 1.2rem; text-align: center; }
+    .hm-avatar { width: 90px; height: 90px; border-radius: 50%; background: #e2e8f0; margin: 0 auto 10px auto; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; color: var(--navy-blue); border: 2px solid var(--gold); }
+    .hm-quote { font-style: italic; font-size: 0.88rem; color: #475569; margin-top: 8px; line-height: 1.4; }
+
+    .jnu-list { list-style: none; padding: 0; }
+    .jnu-list-item { padding: 10px 14px; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; display: flex; gap: 10px; align-items: flex-start; }
+    .jnu-list-item:last-child { border-bottom: none; }
+    .date-badge { background: var(--navy-blue); color: white; padding: 3px 6px; font-size: 0.7rem; font-weight: bold; border-radius: 2px; text-align: center; min-width: 50px; }
+
+    .jnu-tabs { display: flex; background: #e2e8f0; border-bottom: 1px solid var(--border-color); }
+    .jnu-tab-btn { flex: 1; padding: 8px; border: none; background: none; font-weight: bold; font-size: 0.8rem; color: #475569; cursor: pointer; }
+    .jnu-tab-btn.active-jnu-tab { background: white; color: var(--maroon); border-top: 2px solid var(--maroon); }
+
+    .jnu-quick-icons { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .icon-card { background: white; border: 1px solid var(--border-color); padding: 1.2rem; text-align: center; border-radius: 4px; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+    .icon-card:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-color: var(--gold); }
+    .icon-card i { font-size: 2rem; color: var(--maroon); margin-bottom: 8px; }
+    .icon-card h4 { font-size: 0.9rem; color: var(--navy-blue); }
+
+    /* FORM & PORTAL CARDS */
+    .portal-card { background: var(--white); border: 1px solid var(--border-color); border-top: 4px solid var(--maroon); padding: 1.5rem; max-width: 500px; margin: 0 auto; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .portal-tabs { display: flex; border-bottom: 2px solid var(--border-color); margin-bottom: 1.2rem; }
+    .tab-btn { flex: 1; padding: 10px; background: none; border: none; font-weight: bold; color: #64748b; cursor: pointer; font-size: 0.9rem; }
+    .tab-btn.active { color: var(--maroon); border-bottom: 3px solid var(--maroon); }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; color: var(--navy-blue); }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 9px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.9rem; }
+    .btn-submit { width: 100%; padding: 10px; background: var(--navy-blue); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 0.95rem; }
+    .btn-submit:hover { background: #07192d; }
+
+    /* DASHBOARD LAYOUTS */
+    .dash-grid { display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem; }
+    .dash-sidebar { background: white; border: 1px solid var(--border-color); border-radius: 4px; padding: 1rem; }
+    .dash-menu { list-style: none; }
+    .dash-menu li a { display: flex; align-items: center; gap: 10px; padding: 10px; color: var(--dark-text); font-weight: 600; font-size: 0.88rem; border-radius: 4px; margin-bottom: 4px; }
+    .dash-menu li a:hover, .dash-menu li a.active-dash { background: var(--light-bg); color: var(--maroon); }
+    .dash-body { background: white; border: 1px solid var(--border-color); border-radius: 4px; padding: 1.5rem; }
+    .dash-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .dash-stat-card { background: var(--light-bg); padding: 1rem; border-left: 4px solid var(--navy-blue); border-radius: 3px; }
+
+    /* TABLES & GALLERY */
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; }
+    th, td { padding: 10px 12px; border: 1px solid var(--border-color); text-align: left; font-size: 0.88rem; }
+    th { background: var(--navy-blue); color: white; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .gallery-item { background: white; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; }
+    .gallery-item img { width: 100%; height: 160px; object-fit: cover; }
+    .gallery-caption { padding: 8px 12px; font-size: 0.82rem; font-weight: bold; color: var(--navy-blue); }
+
+    /* CHAT HELPDESK WIDGET */
+    .chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 9999; }
+    .chat-btn { background: var(--maroon); color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    .chat-box { display: none; position: absolute; bottom: 65px; right: 0; width: 320px; background: white; border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); overflow: hidden; }
+    .chat-header { background: var(--navy-blue); color: white; padding: 10px 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+    .chat-body { padding: 12px; height: 250px; overflow-y: auto; font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px; }
+    .chat-msg { padding: 8px 12px; border-radius: 6px; max-width: 80%; }
+    .chat-msg.bot { background: #f1f5f9; align-self: flex-start; }
+    .chat-msg.user { background: var(--maroon); color: white; align-self: flex-end; }
+
+    /* FOOTER */
+    footer { background: var(--navy-blue); color: white; padding: 2.5rem 1rem 1rem 1rem; margin-top: 3rem; border-top: 4px solid var(--gold); }
+    .footer-grid { max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; font-size: 0.85rem; }
+    .footer-col h3 { color: var(--gold); margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 5px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .bottom-bar { text-align: center; padding-top: 1.5rem; margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #94a3b8; }
+
+    @media (max-width: 950px) {
+      .jnu-grid, .dash-grid { grid-template-columns: 1fr; }
+      .branding-header { flex-direction: column; text-align: center; gap: 12px; }
+      .header-quick-portal { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Utility Header -->
+  <div class="top-header">
+    <div><i class="fa-solid fa-building-columns"></i> PM SHRI Govt. Girls High School Kaloosa, Bandipora</div>
+    <div class="top-links">
+      <a onclick="navigateTo('fee-page')"><i class="fa-solid fa-credit-card"></i> Online Fee</a>
+      <a onclick="navigateTo('admission-apply-page')"><i class="fa-solid fa-pen-to-square"></i> Apply Admission</a>
+      <a onclick="navigateTo('login-page')"><i class="fa-solid fa-lock"></i> Portals</a>
+      <a onclick="navigateTo('contact-page')"><i class="fa-solid fa-phone"></i> Contact</a>
+    </div>
+  </div>
+
+  <!-- Branding Banner -->
+  <div class="branding-header">
+    <div class="brand-container" onclick="navigateTo('home-page')" style="cursor: pointer;">
+      <div class="school-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div class="school-names">
+        <h1>PM SHRI Govt. Girls High School Kaloosa</h1>
+        <h2>Kaloosa, Bandipora - 193502 (Jammu & Kashmir) | UDISE Code: 01030100101</h2>
+      </div>
+    </div>
+    <div class="header-quick-portal">
+      <button class="btn-portal btn-portal-pay" onclick="navigateTo('fee-page')"><i class="fa-solid fa-indian-rupee-sign"></i> Pay Fee</button>
+      <button class="btn-portal btn-portal-student" onclick="openPortal('student')"><i class="fa-solid fa-user-graduate"></i> Student Portal</button>
+      <button class="btn-portal btn-portal-staff" onclick="openPortal('staff')"><i class="fa-solid fa-chalkboard-user"></i> Staff Portal</button>
+      <button class="btn-portal btn-portal-admin" onclick="openPortal('admin')"><i class="fa-solid fa-user-gear"></i> Admin Console</button>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li class="nav-item"><a class="nav-link active-nav" id="nav-home-page" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li class="nav-item"><a class="nav-link" id="nav-about-page" onclick="navigateTo('about-page')">About Us</a></li>
+      <li class="nav-item"><a class="nav-link" id="nav-academics-page" onclick="navigateTo('academics-page')">Academics & LMS</a></li>
+      <li class="nav-item"><a class="nav-link" id="nav-admissions-page" onclick="navigateTo('admissions-page')">Admissions 2026</a></li>
+      <li class="nav-item"><a class="nav-link" id="nav-fee-page" onclick="navigateTo('fee-page')">Fee Payments</a></li>
+      <li class="nav-item"><a class="nav-link" id="nav-student-corner" onclick="navigateTo('student-corner')">Student Council</a></li>
+      <li class="nav-item"><a class="nav-link" id="nav-pm-shri" onclick="navigateTo('pm-shri')">PM SHRI Scheme</a></li>
+      <li class="nav-item"><a class="nav-link" id="nav-examinations-page" onclick="navigateTo('examinations-page')">Exams & Results</a></li>
+      <li class="nav-item"><a class="nav-link" id="nav-gallery-page" onclick="navigateTo('gallery-page')">Gallery</a></li>
+      <li class="nav-item"><a class="nav-link" id="nav-contact-page" onclick="navigateTo('contact-page')">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Flash Updates Ticker -->
+  <div class="ticker-container">
+    <div class="ticker-title"><i class="fa-solid fa-bell"></i> Live Updates</div>
+    <marquee onmouseover="this.stop();" onmouseout="this.start();">
+      📢 Online Admission Applications open for Class 6th to 10th (Session 2026-27) &nbsp;&nbsp;&nbsp;&nbsp; 
+      📢 Online Fee Payment Gateway enabled - Pay tuition & exam fees securely online &nbsp;&nbsp;&nbsp;&nbsp; 
+      📢 Mid-Term Examination Schedule released. Check Student Portal for Date Sheet.
+    </marquee>
+  </div>
+
+  <!-- Dynamic Content Wrapper -->
+  <div class="main-wrapper">
+
+    <!-- PAGE 1: HOMEPAGE -->
+    <div id="home-page" class="page-content active-page">
+      <div class="jnu-hero-banner">
+        <div class="jnu-hero-content">
+          <h2>Center for Empowered Girls' Education</h2>
+          <p>PM SHRI GGHS Kaloosa is dedicated to fostering academic excellence, leadership, scientific inquiry, and digital literacy for young women in Bandipora.</p>
+        </div>
+        <div class="jnu-stats-strip">
+          <div class="stat-item"><div class="stat-number">480+</div><div class="stat-label">Enrolled Girls</div></div>
+          <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Smart Classrooms</div></div>
+          <div class="stat-item"><div class="stat-number">28</div><div class="stat-label">Expert Faculty</div></div>
+          <div class="stat-item"><div class="stat-number">PM SHRI</div><div class="stat-label">Model Flagship</div></div>
+        </div>
+      </div>
+
+      <div class="jnu-grid">
+        <!-- Col 1: Leadership -->
+        <div class="jnu-box">
+          <div class="jnu-box-title"><span><i class="fa-solid fa-user-tie"></i> School Leadership</span></div>
+          <div class="hm-profile">
+            <div class="hm-avatar"><i class="fa-solid fa-user-graduate"></i></div>
+            <h4 style="color: var(--maroon);">Headmaster's Desk</h4>
+            <p style="font-size: 0.8rem; color: #64748b; font-weight: bold;">PM SHRI GGHS Kaloosa</p>
+            <p class="hm-quote">"Empowering the girl child with modern technology, scientific temperament, and strong ethics is our core mandate."</p>
+          </div>
+        </div>
+
+        <!-- Col 2: News -->
+        <div class="jnu-box">
+          <div class="jnu-box-title">
+            <span><i class="fa-solid fa-newspaper"></i> Latest Announcements</span>
+            <a onclick="navigateTo('student-corner')" style="font-size: 0.75rem; color: var(--maroon);">View All</a>
+          </div>
+          <ul class="jnu-list">
+            <li class="jnu-list-item">
+              <div class="date-badge">AUG 02<br>2026</div>
+              <div>
+                <a onclick="navigateTo('admission-apply-page')" style="font-weight: bold; color: var(--navy-blue);">Online Admissions Opened</a>
+                <p style="font-size: 0.78rem; color: #64748b;">Submit digital admission forms for 2026-27 academic session.</p>
+              </div>
+            </li>
+            <li class="jnu-list-item">
+              <div class="date-badge">JUL 28<br>2026</div>
+              <div>
+                <a onclick="navigateTo('fee-page')" style="font-weight: bold; color: var(--navy-blue);">Digital Fee Portal Launch</a>
+                <p style="font-size: 0.78rem; color: #64748b;">Parents can now pay school fees via UPI, Cards, and NetBanking.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Tabbed Notices -->
+        <div class="jnu-box">
+          <div class="jnu-tabs">
+            <button class="jnu-tab-btn active-jnu-tab" id="tab-notices" onclick="switchJnuTab('notices')">Notices</button>
+            <button class="jnu-tab-btn" id="tab-circulars" onclick="switchJnuTab('circulars')">Circulars</button>
+          </div>
+          <div id="jnu-tab-content">
+            <ul class="jnu-list">
+              <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: red;"></i> <a onclick="navigateTo('examinations-page')">Mid-Term Date Sheet 2026</a></li>
+              <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: red;"></i> <a onclick="navigateTo('student-corner')">Student Leadership Nominations</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Services Grid -->
+      <h3 style="color: var(--navy-blue); border-bottom: 2px solid var(--gold); padding-bottom: 5px; margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase;">Digital Services Portal</h3>
+      <div class="jnu-quick-icons">
+        <div class="icon-card" onclick="navigateTo('admission-apply-page')">
+          <i class="fa-solid fa-laptop-file"></i>
+          <h4>Online Admission</h4>
+        </div>
+        <div class="icon-card" onclick="navigateTo('fee-page')">
+          <i class="fa-solid fa-receipt"></i>
+          <h4>Online Fee Payment</h4>
+        </div>
+        <div class="icon-card" onclick="openPortal('student')">
+          <i class="fa-solid fa-id-card-clip"></i>
+          <h4>Student Dashboard</h4>
+        </div>
+        <div class="icon-card" onclick="openPortal('staff')">
+          <i class="fa-solid fa-clipboard-user"></i>
+          <h4>Staff Portal</h4>
+        </div>
+        <div class="icon-card" onclick="navigateTo('academics-page')">
+          <i class="fa-solid fa-book-bookmark"></i>
+          <h4>Digital LMS / Books</h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 2: ABOUT US -->
+    <div id="about-page" class="page-content">
+      <h2 style="color: var(--maroon); border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-bottom: 1rem;">About Our Institution</h2>
+      <p>PM SHRI Govt. Girls High School Kaloosa Bandipora stands as a beacon of women's empowerment through quality education. The institution provides state-of-the-art ICT labs, digital smart classrooms, modern science laboratories, and comprehensive sports facilities under the central PM SHRI scheme.</p>
+    </div>
+
+    <!-- PAGE 3: ACADEMICS & LMS -->
+    <div id="academics-page" class="page-content">
+      <h2 style="color: var(--maroon); border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-bottom: 1rem;">Academic Curriculum & E-LMS</h2>
+      <p style="margin-bottom: 1rem;">Our curriculum follows the JKBOSE and NEP 2020 frameworks. Students can download digital learning resources directly below:</p>
+      <table>
+        <thead><tr><th>Class</th><th>Subject</th><th>Resource Type</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Class 9th & 10th</td><td>Mathematics</td><td>NCERT Digital Textbook & Notes</td><td><a style="color: var(--accent-blue); font-weight: bold;"><i class="fa-solid fa-download"></i> Download PDF</a></td></tr>
+          <tr><td>Class 9th & 10th</td><td>General Science</td><td>Lab Manual & Experiment Videos</td><td><a style="color: var(--accent-blue); font-weight: bold;"><i class="fa-solid fa-circle-play"></i> Watch Lectures</a></td></tr>
+          <tr><td>Class 6th to 8th</td><td>English & Social Science</td><td>Interactive E-Books</td><td><a style="color: var(--accent-blue); font-weight: bold;"><i class="fa-solid fa-download"></i> Download PDF</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGE 4: ADMISSIONS (OVERVIEW & DIRECT LINK) -->
+    <div id="admissions-page" class="page-content">
+      <h2 style="color: var(--maroon); border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-bottom: 1rem;">Admissions Session 2026-2027</h2>
+      <p>Admissions are currently active for female students seeking enrollment from Class 6th to 10th.</p>
+      <div style="margin-top: 1.5rem; background: white; padding: 1.5rem; border: 1px solid var(--border-color); border-left: 5px solid var(--maroon);">
+        <h3 style="color: var(--navy-blue); margin-bottom: 8px;">Ready to Join PM SHRI GGHS Kaloosa?</h3>
+        <p style="margin-bottom: 1rem;">Fill out our digitized online admission form in a few easy steps.</p>
+        <button class="btn-portal btn-portal-student" onclick="navigateTo('admission-apply-page')" style="padding: 10px 20px; font-size: 0.95rem;"><i class="fa-solid fa-paper-plane"></i> Launch Online Admission Form</button>
+      </div>
+    </div>
+
+    <!-- PAGE 4B: ONLINE ADMISSION APPLICATION FORM -->
+    <div id="admission-apply-page" class="page-content">
+      <div class="portal-card" style="max-width: 650px;">
+        <h2 style="color: var(--maroon); text-align: center; margin-bottom: 0.5rem;"><i class="fa-solid fa-file-pen"></i> Online Admission Application</h2>
+        <p style="text-align: center; font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Academic Session 2026-2027 | PM SHRI GGHS Kaloosa</p>
+        
+        <form onsubmit="handleAdmissionSubmit(event)">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Student Full Name *</label>
+              <input type="text" required placeholder="Full Name">
+            </div>
+            <div class="form-group">
+              <label>Grade/Class Seeking *</label>
+              <select required>
+                <option value="">Select Class</option>
+                <option>Class 6th</option>
+                <option>Class 7th</option>
+                <option>Class 8th</option>
+                <option>Class 9th</option>
+                <option>Class 10th</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Date of Birth *</label>
+              <input type="date" required>
+            </div>
+            <div class="form-group">
+              <label>Aadhaar Number *</label>
+              <input type="text" maxlength="12" placeholder="12-digit Aadhaar No." required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Father's / Guardian's Name *</label>
+              <input type="text" required placeholder="Parent Name">
+            </div>
+            <div class="form-group">
+              <label>Contact Mobile Number *</label>
+              <input type="tel" required placeholder="10-digit Phone Number">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Residential Address (Kaloosa / Bandipora) *</label>
+            <textarea rows="2" required placeholder="Enter complete address"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Upload Transfer Certificate (TC) / Marksheet (PDF/JPG)</label>
+            <input type="file" required>
+          </div>
+
+          <button type="submit" class="btn-submit"><i class="fa-solid fa-check-circle"></i> Submit Admission Application</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- PAGE 5: ONLINE FEE PAYMENT GATEWAY -->
+    <div id="fee-page" class="page-content">
+      <div class="portal-card" style="max-width: 580px;">
+        <h2 style="color: var(--maroon); text-align: center; margin-bottom: 0.5rem;"><i class="fa-solid fa-cash-register"></i> Online Fee Payment Portal</h2>
+        <p style="text-align: center; font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Secure Payment Gateway for PM SHRI GGHS Kaloosa</p>
+
+        <form id="fee-form" onsubmit="handleFeePayment(event)">
+          <div class="form-group">
+            <label>Student Roll No / Admission ID *</label>
+            <input type="text" id="fee-student-id" placeholder="e.g. STU-2026-042" required>
+          </div>
+
+          <div class="form-group">
+            <label>Fee Component *</label>
+            <select id="fee-type" onchange="calculateFee()" required>
+              <option value="500">Annual Development & IT Fee (₹500)</option>
+              <option value="250">Examination & Lab Fee (₹250)</option>
+              <option value="150">Sports & Cultural Fund (₹150)</option>
+              <option value="900">Combined Full Term Fee (₹900)</option>
+            </select>
+          </div>
+
+          <div style="background: #f8fafc; padding: 1rem; border: 1px solid var(--border-color); border-radius: 4px; margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-weight: bold; color: var(--navy-blue);">
+              <span>Total Payable Amount:</span>
+              <span id="fee-amount-display" style="color: var(--maroon); font-size: 1.2rem;">₹500.00</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Select Payment Mode *</label>
+            <select required>
+              <option>UPI / QR Code (GPay, PhonePe, Paytm)</option>
+              <option>Debit / Credit Card</option>
+              <option>Net Banking (JK Bank / SBI / Other)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit" style="background-color: var(--success-green);"><i class="fa-solid fa-shield-halved"></i> Proceed to Pay Securely</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- PAGE 6: STUDENT CORNER & ELECTIONS -->
+    <div id="student-corner" class="page-content">
+      <h2 style="color: var(--maroon); border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-bottom: 1rem;">Student Leadership & Governance</h2>
+      <p>Empowering young women through democratic participation in school leadership committees.</p>
+    </div>
+
+    <!-- PAGE 7: PM SHRI SCHEME -->
+    <div id="pm-shri" class="page-content">
+      <h2 style="color: var(--maroon); border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-bottom: 1rem;">PM SHRI Scheme Details</h2>
+      <p>Under the PM Schools for Rising India (PM SHRI) initiative, GGHS Kaloosa is equipped with cutting-edge learning tools, eco-friendly infrastructure, and skill laboratories.</p>
+    </div>
+
+    <!-- PAGE 8: EXAMINATIONS & RESULTS -->
+    <div id="examinations-page" class="page-content">
+      <h2 style="color: var(--maroon); border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-bottom: 1rem;">Examinations & Digital Results Portal</h2>
+      <table>
+        <thead><tr><th>Exam Title</th><th>Class</th><th>Session</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Mid-Term Examination 2026</td><td>Class 6th to 10th</td><td>August 2026</td><td><span style="color: green; font-weight: bold;">Date Sheet Published</span></td></tr>
+          <tr><td>Annual Board Examination</td><td>Class 10th</td><td>Nov 2026</td><td><span style="color: orange; font-weight: bold;">Upcoming</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGE 9: GALLERY -->
+    <div id="gallery-page" class="page-content">
+      <h2 style="color: var(--maroon); border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-bottom: 1rem;">Campus Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=500&q=80" alt="Smart Classroom"><div class="gallery-caption">ICT Smart Classroom</div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=500&q=80" alt="Science Lab"><div class="gallery-caption">Science Innovation Lab</div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=500&q=80" alt="Library"><div class="gallery-caption">Central Digital Library</div></div>
+      </div>
+    </div>
+
+    <!-- PAGE 10: CONTACT US -->
+    <div id="contact-page" class="page-content">
+      <h2 style="color: var(--maroon); border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-bottom: 1rem;">Contact Administration</h2>
+      <p><strong>PM SHRI Govt. Girls High School Kaloosa</strong><br>Bandipora, Jammu & Kashmir - 193502<br>Email: gghskaloosa@gmail.com | Helpline: +91 1957 222XXX</p>
+    </div>
+
+    <!-- PAGE 11: LOGIN PORTAL SELECTOR -->
+    <div id="login-page" class="page-content">
+      <div class="portal-card">
+        <div class="portal-tabs">
+          <button class="tab-btn active" id="tab-student" onclick="setRole('student')">Student</button>
+          <button class="tab-btn" id="tab-staff" onclick="setRole('staff')">Staff</button>
+          <button class="tab-btn" id="tab-admin" onclick="setRole('admin')">Admin</button>
+        </div>
+        <form onsubmit="handlePortalLogin(event)">
+          <h3 id="portal-title" style="font-size: 1.1rem; color: var(--navy-blue); margin-bottom: 1rem;">Student Sign In</h3>
+          <div class="form-group"><label id="id-label">Roll Number / ID</label><input type="text" id="username" required></div>
+          <div class="form-group"><label>Password</label><input type="password" required value="password"></div>
+          <button type="submit" class="btn-submit" id="portal-btn">Login to Dashboard</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- PAGE 12: DYNAMIC DASHBOARDS (STUDENT / STAFF / ADMIN) -->
+    <div id="dashboard-page" class="page-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px; margin-bottom: 1.5rem;">
+        <h2 id="dash-title" style="color: var(--navy-blue);">User Dashboard</h2>
+        <button class="btn-portal btn-portal-admin" onclick="navigateTo('home-page')"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      </div>
+
+      <div class="dash-grid">
+        <div class="dash-sidebar">
+          <ul class="dash-menu" id="dash-menu-items">
+            <!-- Rendered dynamically -->
+          </ul>
+        </div>
+        <div class="dash-body" id="dash-main-body">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FLOATING LIVE CHAT HELPDESK -->
+  <div class="chat-widget">
+    <div class="chat-btn" onclick="toggleChat()"><i class="fa-solid fa-headset"></i></div>
+    <div class="chat-box" id="chat-box">
+      <div class="chat-header">
+        <span><i class="fa-solid fa-robot"></i> Kaloosa Helpdesk AI</span>
+        <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="toggleChat()"></i>
+      </div>
+      <div class="chat-body" id="chat-messages">
+        <div class="chat-msg bot">Hello! Welcome to PM SHRI GGHS Kaloosa. How can I assist you today?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>PM SHRI GGHS Kaloosa</h3>
+        <p>A flagship model institution committed to secondary education for girls in District Bandipora.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Navigation</h3>
+        <ul>
+          <li><a onclick="navigateTo('about-page')">About School</a></li>
+          <li><a onclick="navigateTo('admission-apply-page')">Online Admission</a></li>
+          <li><a onclick="navigateTo('fee-page')">Fee Payments</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Institutional Portals</h3>
+        <ul>
+          <li><a onclick="openPortal('student')">Student Portal</a></li>
+          <li><a onclick="openPortal('staff')">Faculty Portal</a></li>
+          <li><a onclick="openPortal('admin')">Admin Console</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom-bar">&copy; 2026 PM SHRI Govt. Girls High School Kaloosa, Bandipora. All Rights Reserved.</div>
+  </footer>
+
+  <!-- JavaScript Engine -->
+  <script>
+    let activeRole = 'student';
+
+    function navigateTo(pageId) {
+      document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active-page'));
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-nav'));
+
+      const targetPage = document.getElementById(pageId);
+      if (targetPage) targetPage.classList.add('active-page');
+
+      const targetNav = document.getElementById(`nav-${pageId}`);
+      if (targetNav) targetNav.classList.add('active-nav');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openPortal(role) {
+      navigateTo('login-page');
+      setRole(role);
+    }
+
+    function setRole(role) {
+      activeRole = role;
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`tab-${role}`).classList.add('active');
+
+      const title = document.getElementById('portal-title');
+      const label = document.getElementById('id-label');
+      const usernameInput = document.getElementById('username');
+
+      if (role === 'student') {
+        title.innerText = 'Student Portal Sign In';
+        label.innerText = 'Roll Number / ID';
+        usernameInput.placeholder = 'e.g., STU-2026-042';
+      } else if (role === 'staff') {
+        title.innerText = 'Staff & Faculty Sign In';
+        label.innerText = 'Employee ID';
+        usernameInput.placeholder = 'e.g., EMP-8849';
+      } else if (role === 'admin') {
+        title.innerText = 'Administrator Console Sign In';
+        label.innerText = 'Admin Username';
+        usernameInput.placeholder = 'Enter Admin ID';
+      }
+    }
+
+    function switchJnuTab(tab) {
+      document.querySelectorAll('.jnu-tab-btn').forEach(btn => btn.classList.remove('active-jnu-tab'));
+      document.getElementById(`tab-${tab}`).classList.add('active-jnu-tab');
+
+      const container = document.getElementById('jnu-tab-content');
+      if (tab === 'notices') {
+        container.innerHTML = `
+          <ul class="jnu-list">
+            <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: red;"></i> <a onclick="navigateTo('examinations-page')">Mid-Term Examination Date Sheet</a></li>
+            <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: red;"></i> <a onclick="navigateTo('student-corner')">Student Council Nomination Form</a></li>
+          </ul>`;
+      } else if (tab === 'circulars') {
+        container.innerHTML = `
+          <ul class="jnu-list">
+            <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: blue;"></i> <a onclick="navigateTo('pm-shri')">NEP Smart Class Guidelines</a></li>
+            <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: blue;"></i> <a onclick="navigateTo('academics-page')">Attendance Mandate Circular</a></li>
+          </ul>`;
+      }
+    }
+
+    function calculateFee() {
+      const val = document.getElementById('fee-type').value;
+      document.getElementById('fee-amount-display').innerText = `₹${val}.00`;
+    }
+
+    function handleAdmissionSubmit(e) {
+      e.preventDefault();
+      alert("Application Submitted Successfully! Your Application Reference Number is: ADM-2026-9812. Our administrative team will verify your details.");
+      navigateTo('home-page');
+    }
+
+    function handleFeePayment(e) {
+      e.preventDefault();
+      const id = document.getElementById('fee-student-id').value;
+      alert(`Payment Successful! Receipt generated for Student ID: ${id}. Confirmation SMS sent to registered mobile number.`);
+      navigateTo('home-page');
+    }
+
+    function handlePortalLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('username').value;
+      navigateTo('dashboard-page');
+      
+      const title = document.getElementById('dash-title');
+      const menu = document.getElementById('dash-menu-items');
+      const body = document.getElementById('dash-main-body');
+
+      title.innerText = `${activeRole.toUpperCase()} PORTAL - Welcome, ${user}`;
+
+      if (activeRole === 'student') {
+        menu.innerHTML = `
+          <li><a class="active-dash"><i class="fa-solid fa-gauge"></i> Overview</a></li>
+          <li><a><i class="fa-solid fa-calendar-check"></i> Attendance (94%)</a></li>
+          <li><a><i class="fa-solid fa-graduation-cap"></i> Grades & Marks</a></li>
+          <li><a><i class="fa-solid fa-wallet"></i> Fee History</a></li>
+        `;
+        body.innerHTML = `
+          <div class="dash-card-grid">
+            <div class="dash-stat-card"><h4>Overall Attendance</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--navy-blue);">94.2%</p></div>
+            <div class="dash-stat-card"><h4>Academic Rank</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--maroon);">3rd in Class</p></div>
+            <div class="dash-stat-card"><h4>Pending Fees</h4><p style="font-size: 1.5rem; font-weight: bold; color: green;">₹0 (Paid)</p></div>
+          </div>
+          <h3>Assigned Homework / Tasks</h3>
+          <p style="margin-top: 0.5rem; color: #64748b;">• Science Lab Report submission due on Friday.<br>• Mathematics Chapter 5 Exercises.</p>
+        `;
+      } else if (activeRole === 'staff') {
+        menu.innerHTML = `
+          <li><a class="active-dash"><i class="fa-solid fa-gauge"></i> Overview</a></li>
+          <li><a><i class="fa-solid fa-user-check"></i> Mark Attendance</a></li>
+          <li><a><i class="fa-solid fa-pen-to-square"></i> Enter Marks</a></li>
+          <li><a><i class="fa-solid fa-file-arrow-up"></i> Upload Study Material</a></li>
+        `;
+        body.innerHTML = `
+          <div class="dash-card-grid">
+            <div class="dash-stat-card"><h4>Classes Assigned</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--navy-blue);">Class 9th & 10th</p></div>
+            <div class="dash-stat-card"><h4>Total Students</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--maroon);">98 Students</p></div>
+          </div>
+          <h3>Faculty Quick Actions</h3>
+          <button class="btn-portal btn-portal-student" style="margin-top: 0.5rem;"><i class="fa-solid fa-plus"></i> Add New Assignment</button>
+        `;
+      } else {
+        menu.innerHTML = `
+          <li><a class="active-dash"><i class="fa-solid fa-gauge"></i> System Control</a></li>
+          <li><a><i class="fa-solid fa-users"></i> Manage Admissions</a></li>
+          <li><a><i class="fa-solid fa-indian-rupee-sign"></i> Revenue & Fees</a></li>
+          <li><a><i class="fa-solid fa-bullhorn"></i> Publish Notices</a></li>
+        `;
+        body.innerHTML = `
+          <div class="dash-card-grid">
+            <div class="dash-stat-card"><h4>New Admission Apps</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--maroon);">24 Pending</p></div>
+            <div class="dash-stat-card"><h4>Total Revenue Collected</h4><p style="font-size: 1.5rem; font-weight: bold; color: green;">₹1,42,500</p></div>
+          </div>
+          <h3>System Health</h3>
+          <p style="color: green; font-weight: bold;">● All Portal Systems Operational</p>
+        `;
+      }
+    }
+
+    function toggleChat() {
+      const chat = document.getElementById('chat-box');
+      chat.style.display = chat.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
