@@ -586,7 +586,7 @@
   <div class="chat-btn" onclick="toggleChat()"><i class="fa-solid fa-headset"></i></div>
   <div class="chat-box" id="chat-box">
     <div class="chat-header">
-      <span><i class="fa-solid fa-robot"></i> AI Helpdesk (GHS Kaloosa) </span>
+      <span><i class="fa-solid fa-robot"></i> AI Helpdesk (GHS Kaloosa)</span>
       <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="toggleChat()"></i>
     </div>
     <div class="chat-body" id="chat-messages">
@@ -602,216 +602,223 @@
   </div>
 </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h3>PM SHRI GGHS Kaloosa</h3>
-        <p>A PM SHRI institution committed to secondary education for girls in District Bandipora.</p>
-      </div>
-      <div class="footer-col">
-        <h3>Quick Navigation</h3>
-        <ul>
-          <li><a onclick="navigateTo('about-page')">About School</a></li>
-          <li><a onclick="navigateTo('admission-apply-page')">Online Admission</a></li>
-          <li><a onclick="navigateTo('fee-page')">Fee Payments</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Institutional Portals</h3>
-        <ul>
-          <li><a onclick="openPortal('student')">Student Portal</a></li>
-          <li><a onclick="openPortal('staff')">Faculty Portal</a></li>
-          <li><a onclick="openPortal('admin')">Admin Console</a></li>
-        </ul>
-      </div>
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>PM SHRI GGHS Kaloosa</h3>
+      <p>A PM SHRI institution committed to secondary education for girls in District Bandipora.</p>
     </div>
-    <div class="bottom-bar">&copy; 2026 PM SHRI Govt. Girls High School Kaloosa, Bandipora. All Rights Reserved.</div>
-  </footer>
+    <div class="footer-col">
+      <h3>Quick Navigation</h3>
+      <ul>
+        <li><a onclick="navigateTo('about-page')">About School</a></li>
+        <li><a onclick="navigateTo('admission-apply-page')">Online Admission</a></li>
+        <li><a onclick="navigateTo('fee-page')">Fee Payments</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Institutional Portals</h3>
+      <ul>
+        <li><a onclick="openPortal('student')">Student Portal</a></li>
+        <li><a onclick="openPortal('staff')">Faculty Portal</a></li>
+        <li><a onclick="openPortal('admin')">Admin Console</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-bar">&copy; 2026 PM SHRI Govt. Girls High School Kaloosa, Bandipora. All Rights Reserved.</div>
+</footer>
 
-  <!-- JavaScript Engine -->
-  <script>
-    let activeRole = 'student';
+<!-- JavaScript Engine -->
+<script>
+  let activeRole = 'student';
 
-    function navigateTo(pageId) {
-      document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active-page'));
-      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-nav'));
-
-      const targetPage = document.getElementById(pageId);
-      if (targetPage) targetPage.classList.add('active-page');
-
-      const targetNav = document.getElementById(`nav-${pageId}`);
-      if (targetNav) targetNav.classList.add('active-nav');
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  function toggleChat() {
+    const chatBox = document.getElementById('chat-box');
+    if (chatBox) {
+      chatBox.style.display = (chatBox.style.display === 'flex' || chatBox.style.display === 'block') ? 'none' : 'flex';
     }
+  }
 
-    function openPortal(role) {
-      navigateTo('login-page');
-      setRole(role);
+  function navigateTo(pageId) {
+    document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active-page'));
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-nav'));
+
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) targetPage.classList.add('active-page');
+
+    const targetNav = document.getElementById(`nav-${pageId}`);
+    if (targetNav) targetNav.classList.add('active-nav');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function openPortal(role) {
+    navigateTo('login-page');
+    setRole(role);
+  }
+
+  function setRole(role) {
+    activeRole = role;
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(`tab-${role}`).classList.add('active');
+
+    const title = document.getElementById('portal-title');
+    const label = document.getElementById('id-label');
+    const usernameInput = document.getElementById('username');
+
+    if (role === 'student') {
+      title.innerText = 'Student Portal Sign In';
+      label.innerText = 'Roll Number / ID';
+      usernameInput.placeholder = 'e.g., STU-2026-042';
+    } else if (role === 'staff') {
+      title.innerText = 'Staff & Faculty Sign In';
+      label.innerText = 'Employee ID';
+      usernameInput.placeholder = 'e.g., EMP-8849';
+    } else if (role === 'admin') {
+      title.innerText = 'Administrator Console Sign In';
+      label.innerText = 'Admin Username';
+      usernameInput.placeholder = 'Enter Admin ID';
     }
+  }
 
-    function setRole(role) {
-      activeRole = role;
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(`tab-${role}`).classList.add('active');
+  function switchJnuTab(tab) {
+    document.querySelectorAll('.jnu-tab-btn').forEach(btn => btn.classList.remove('active-jnu-tab'));
+    document.getElementById(`tab-${tab}`).classList.add('active-jnu-tab');
 
-      const title = document.getElementById('portal-title');
-      const label = document.getElementById('id-label');
-      const usernameInput = document.getElementById('username');
-
-      if (role === 'student') {
-        title.innerText = 'Student Portal Sign In';
-        label.innerText = 'Roll Number / ID';
-        usernameInput.placeholder = 'e.g., STU-2026-042';
-      } else if (role === 'staff') {
-        title.innerText = 'Staff & Faculty Sign In';
-        label.innerText = 'Employee ID';
-        usernameInput.placeholder = 'e.g., EMP-8849';
-      } else if (role === 'admin') {
-        title.innerText = 'Administrator Console Sign In';
-        label.innerText = 'Admin Username';
-        usernameInput.placeholder = 'Enter Admin ID';
-      }
+    const container = document.getElementById('jnu-tab-content');
+    if (tab === 'notices') {
+      container.innerHTML = `
+        <ul class="jnu-list">
+          <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: red;"></i> <a onclick="navigateTo('examinations-page')">Mid-Term Examination Date Sheet</a></li>
+          <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: red;"></i> <a onclick="navigateTo('student-corner')">Student Council Nomination Form</a></li>
+        </ul>`;
+    } else if (tab === 'circulars') {
+      container.innerHTML = `
+        <ul class="jnu-list">
+          <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: blue;"></i> <a onclick="navigateTo('pm-shri')">NEP Smart Class Guidelines</a></li>
+          <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: blue;"></i> <a onclick="navigateTo('academics-page')">Attendance Mandate Circular</a></li>
+        </ul>`;
     }
+  }
 
-    function switchJnuTab(tab) {
-      document.querySelectorAll('.jnu-tab-btn').forEach(btn => btn.classList.remove('active-jnu-tab'));
-      document.getElementById(`tab-${tab}`).classList.add('active-jnu-tab');
+  function calculateFee() {
+    const val = document.getElementById('fee-type').value;
+    document.getElementById('fee-amount-display').innerText = `₹${val}.00`;
+  }
 
-      const container = document.getElementById('jnu-tab-content');
-      if (tab === 'notices') {
-        container.innerHTML = `
-          <ul class="jnu-list">
-            <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: red;"></i> <a onclick="navigateTo('examinations-page')">Mid-Term Examination Date Sheet</a></li>
-            <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: red;"></i> <a onclick="navigateTo('student-corner')">Student Council Nomination Form</a></li>
-          </ul>`;
-      } else if (tab === 'circulars') {
-        container.innerHTML = `
-          <ul class="jnu-list">
-            <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: blue;"></i> <a onclick="navigateTo('pm-shri')">NEP Smart Class Guidelines</a></li>
-            <li class="jnu-list-item"><i class="fa-solid fa-file-pdf" style="color: blue;"></i> <a onclick="navigateTo('academics-page')">Attendance Mandate Circular</a></li>
-          </ul>`;
-      }
-    }
+  function handleAdmissionSubmit(e) {
+    e.preventDefault();
+    alert("Application Submitted Successfully! Your Application Reference Number is: ADM-2026-9812. Our administrative team will verify your details.");
+    navigateTo('home-page');
+  }
 
-    function calculateFee() {
-      const val = document.getElementById('fee-type').value;
-      document.getElementById('fee-amount-display').innerText = `₹${val}.00`;
-    }
+  function handleFeePayment(e) {
+    e.preventDefault();
+    const id = document.getElementById('fee-student-id').value;
+    alert(`Payment Successful! Receipt generated for Student ID: ${id}. Confirmation SMS sent to registered mobile number.`);
+    navigateTo('home-page');
+  }
 
-    function handleAdmissionSubmit(e) {
-      e.preventDefault();
-      alert("Application Submitted Successfully! Your Application Reference Number is: ADM-2026-9812. Our administrative team will verify your details.");
-      navigateTo('home-page');
-    }
+  function handlePortalLogin(e) {
+    e.preventDefault();
+    const user = document.getElementById('username').value;
+    navigateTo('dashboard-page');
+    
+    const title = document.getElementById('dash-title');
+    const menu = document.getElementById('dash-menu-items');
+    const body = document.getElementById('dash-main-body');
 
-    function handleFeePayment(e) {
-      e.preventDefault();
-      const id = document.getElementById('fee-student-id').value;
-      alert(`Payment Successful! Receipt generated for Student ID: ${id}. Confirmation SMS sent to registered mobile number.`);
-      navigateTo('home-page');
-    }
+    title.innerText = `${activeRole.toUpperCase()} PORTAL - Welcome, ${user}`;
 
-    function handlePortalLogin(e) {
-      e.preventDefault();
-      const user = document.getElementById('username').value;
-      navigateTo('dashboard-page');
-      
-      const title = document.getElementById('dash-title');
-      const menu = document.getElementById('dash-menu-items');
-      const body = document.getElementById('dash-main-body');
-
-      title.innerText = `${activeRole.toUpperCase()} PORTAL - Welcome, ${user}`;
-
-      if (activeRole === 'student') {
-        menu.innerHTML = `
-          <li><a class="active-dash"><i class="fa-solid fa-gauge"></i> Overview</a></li>
-          <li><a><i class="fa-solid fa-calendar-check"></i> Attendance (94%)</a></li>
-          <li><a><i class="fa-solid fa-graduation-cap"></i> Grades & Marks</a></li>
-          <li><a><i class="fa-solid fa-wallet"></i> Fee History</a></li>
-        `;
-        body.innerHTML = `
-          <div class="dash-card-grid">
-            <div class="dash-stat-card"><h4>Overall Attendance</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--navy-blue);">94.2%</p></div>
-            <div class="dash-stat-card"><h4>Academic Rank</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--maroon);">3rd in Class</p></div>
-            <div class="dash-stat-card"><h4>Pending Fees</h4><p style="font-size: 1.5rem; font-weight: bold; color: green;">₹0 (Paid)</p></div>
-          </div>
-          <h3>Assigned Homework / Tasks</h3>
-          <p style="margin-top: 0.5rem; color: #64748b;">• Science Lab Report submission due on Friday.<br>• Mathematics Chapter 5 Exercises.</p>
-        `;
-      } else if (activeRole === 'staff') {
-        menu.innerHTML = `
-          <li><a class="active-dash"><i class="fa-solid fa-gauge"></i> Overview</a></li>
-          <li><a><i class="fa-solid fa-user-check"></i> Mark Attendance</a></li>
-          <li><a><i class="fa-solid fa-pen-to-square"></i> Enter Marks</a></li>
-          <li><a><i class="fa-solid fa-file-arrow-up"></i> Upload Study Material</a></li>
-        `;
-        body.innerHTML = `
-          <div class="dash-card-grid">
-            <div class="dash-stat-card"><h4>Classes Assigned</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--navy-blue);">Class 9th & 10th</p></div>
-            <div class="dash-stat-card"><h4>Total Students</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--maroon);">98 Students</p></div>
-          </div>
-          <h3>Faculty Quick Actions</h3>
-          <button class="btn-portal btn-portal-student" style="margin-top: 0.5rem;"><i class="fa-solid fa-plus"></i> Add New Assignment</button>
-        `;
-      } else {
-        menu.innerHTML = `
-          <li><a class="active-dash"><i class="fa-solid fa-gauge"></i> System Control</a></li>
-          <li><a><i class="fa-solid fa-users"></i> Manage Admissions</a></li>
-          <li><a><i class="fa-solid fa-indian-rupee-sign"></i> Revenue & Fees</a></li>
-          <li><a><i class="fa-solid fa-bullhorn"></i> Publish Notices</a></li>
-        `;
-        body.innerHTML = `
-          <div class="dash-card-grid">
-            <div class="dash-stat-card"><h4>New Admission Apps</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--maroon);">24 Pending</p></div>
-            <div class="dash-stat-card"><h4>Total Revenue Collected</h4><p style="font-size: 1.5rem; font-weight: bold; color: green;">₹1,42,500</p></div>
-          </div>
-          <h3>System Health</h3>
-          <p style="color: green; font-weight: bold;">● All Portal Systems Operational</p>
-        `;
-      }
-    }
-
-   function handleChatMessage(e) {
-  e.preventDefault();
-  const input = document.getElementById('chat-input');
-  const userText = input.value.trim();
-  if (!userText) return;
-
-  const chatMessages = document.getElementById('chat-messages');
-
-  // Append user message
-  const userMsgDiv = document.createElement('div');
-  userMsgDiv.className = 'chat-msg user';
-  userMsgDiv.innerText = userText;
-  chatMessages.appendChild(userMsgDiv);
-
-  input.value = '';
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-
-  // Generate response
-  setTimeout(() => {
-    const botMsgDiv = document.createElement('div');
-    botMsgDiv.className = 'chat-msg bot';
-
-    const lower = userText.toLowerCase();
-    if (lower.includes('admission') || lower.includes('apply')) {
-      botMsgDiv.innerText = "Online admissions for 2026-27 are open! You can apply directly using the 'Online Admission' link in the top menu.";
-    } else if (lower.includes('fee') || lower.includes('pay')) {
-      botMsgDiv.innerText = "You can pay school fees, annual development charges, or exam fees online via UPI, Cards, or Net Banking under the 'Fee Payments' section.";
-    } else if (lower.includes('contact') || lower.includes('phone') || lower.includes('email') || lower.includes('address')) {
-      botMsgDiv.innerText = "We are located at Kaloosa, Bandipora - 193502. You can email us at ghskaloosaheadmaster@gmail.com.";
-    } else if (lower.includes('exam') || lower.includes('result') || lower.includes('date sheet')) {
-      botMsgDiv.innerText = "Mid-Term Examination date sheets have been published! Check the 'Exams & Results' tab for updates.";
+    if (activeRole === 'student') {
+      menu.innerHTML = `
+        <li><a class="active-dash"><i class="fa-solid fa-gauge"></i> Overview</a></li>
+        <li><a><i class="fa-solid fa-calendar-check"></i> Attendance (94%)</a></li>
+        <li><a><i class="fa-solid fa-graduation-cap"></i> Grades & Marks</a></li>
+        <li><a><i class="fa-solid fa-wallet"></i> Fee History</a></li>
+      `;
+      body.innerHTML = `
+        <div class="dash-card-grid">
+          <div class="dash-stat-card"><h4>Overall Attendance</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--navy-blue);">94.2%</p></div>
+          <div class="dash-stat-card"><h4>Academic Rank</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--maroon);">3rd in Class</p></div>
+          <div class="dash-stat-card"><h4>Pending Fees</h4><p style="font-size: 1.5rem; font-weight: bold; color: green;">₹0 (Paid)</p></div>
+        </div>
+        <h3>Assigned Homework / Tasks</h3>
+        <p style="margin-top: 0.5rem; color: #64748b;">• Science Lab Report submission due on Friday.<br>• Mathematics Chapter 5 Exercises.</p>
+      `;
+    } else if (activeRole === 'staff') {
+      menu.innerHTML = `
+        <li><a class="active-dash"><i class="fa-solid fa-gauge"></i> Overview</a></li>
+        <li><a><i class="fa-solid fa-user-check"></i> Mark Attendance</a></li>
+        <li><a><i class="fa-solid fa-pen-to-square"></i> Enter Marks</a></li>
+        <li><a><i class="fa-solid fa-file-arrow-up"></i> Upload Study Material</a></li>
+      `;
+      body.innerHTML = `
+        <div class="dash-card-grid">
+          <div class="dash-stat-card"><h4>Classes Assigned</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--navy-blue);">Class 9th & 10th</p></div>
+          <div class="dash-stat-card"><h4>Total Students</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--maroon);">98 Students</p></div>
+        </div>
+        <h3>Faculty Quick Actions</h3>
+        <button class="btn-portal btn-portal-student" style="margin-top: 0.5rem;"><i class="fa-solid fa-plus"></i> Add New Assignment</button>
+      `;
     } else {
-      botMsgDiv.innerText = "Thank you for reaching out! For detailed queries, please visit our Contact page or email administration directly.";
+      menu.innerHTML = `
+        <li><a class="active-dash"><i class="fa-solid fa-gauge"></i> System Control</a></li>
+        <li><a><i class="fa-solid fa-users"></i> Manage Admissions</a></li>
+        <li><a><i class="fa-solid fa-indian-rupee-sign"></i> Revenue & Fees</a></li>
+        <li><a><i class="fa-solid fa-bullhorn"></i> Publish Notices</a></li>
+      `;
+      body.innerHTML = `
+        <div class="dash-card-grid">
+          <div class="dash-stat-card"><h4>New Admission Apps</h4><p style="font-size: 1.5rem; font-weight: bold; color: var(--maroon);">24 Pending</p></div>
+          <div class="dash-stat-card"><h4>Total Revenue Collected</h4><p style="font-size: 1.5rem; font-weight: bold; color: green;">₹1,42,500</p></div>
+        </div>
+        <h3>System Health</h3>
+        <p style="color: green; font-weight: bold;">● All Portal Systems Operational</p>
+      `;
     }
+  }
 
-    chatMessages.appendChild(botMsgDiv);
+  function handleChatMessage(e) {
+    e.preventDefault();
+    const input = document.getElementById('chat-input');
+    const userText = input.value.trim();
+    if (!userText) return;
+
+    const chatMessages = document.getElementById('chat-messages');
+
+    // Append user message
+    const userMsgDiv = document.createElement('div');
+    userMsgDiv.className = 'chat-msg user';
+    userMsgDiv.innerText = userText;
+    chatMessages.appendChild(userMsgDiv);
+
+    input.value = '';
     chatMessages.scrollTop = chatMessages.scrollHeight;
-  }, 600);
-}
-  </script>
+
+    // Generate automated bot response
+    setTimeout(() => {
+      const botMsgDiv = document.createElement('div');
+      botMsgDiv.className = 'chat-msg bot';
+
+      const lower = userText.toLowerCase();
+      if (lower.includes('admission') || lower.includes('apply')) {
+        botMsgDiv.innerText = "Online admissions for 2026-27 are open! You can apply directly using the 'Online Admission' link in the top menu.";
+      } else if (lower.includes('fee') || lower.includes('pay')) {
+        botMsgDiv.innerText = "You can pay school fees, annual development charges, or exam fees online via UPI, Cards, or Net Banking under the 'Fee Payments' section.";
+      } else if (lower.includes('contact') || lower.includes('phone') || lower.includes('email') || lower.includes('address')) {
+        botMsgDiv.innerText = "We are located at Kaloosa, Bandipora - 193502. You can email us at ghskaloosaheadmaster@gmail.com.";
+      } else if (lower.includes('exam') || lower.includes('result') || lower.includes('date sheet')) {
+        botMsgDiv.innerText = "Mid-Term Examination date sheets have been published! Check the 'Exams & Results' tab for updates.";
+      } else {
+        botMsgDiv.innerText = "Thank you for reaching out! For detailed queries, please visit our Contact page or email administration directly.";
+      }
+
+      chatMessages.appendChild(botMsgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 600);
+  }
+</script>
 </body>
 </html>
